@@ -25,21 +25,27 @@ function setup() {
     dirt.addAni({w:16, h:16, row:6, col:0})
     dirt.tile = 'd';
 
+    green = new Group();
+    green.collider = 's';
+    green.spriteSheet = sheetImg;
+    green.addAni({w:16, h:16, row:15, col:3})
+    green.tile = 'v';
+
     new Tiles([
-        'gggggggggggggggg',
-        'gddddddgdddddddg',
-        'gggggdggggggggdg',
-        'ddddddddddddgddg',
-        'gggggggggggdgdgg',
-        'gddddgddddddgddg',
-        'gdgdddddggddgddg',
-        'gdgdgggdggdgggdg',
-        'gdggggggggdgdddg',
-        'gdgddddddgdgdggg',
-        'gdgdgggddgdgdddd',
-        'gdgdgggggggggdgg',
-        'gddddddddddddddg',
-        'gggggggggggggggg',
+        'ggggggggggggggggvvvvvvvvvvvvvvvv',
+        'gddddddgdddddddgvvvvvvvvvvvvvvvv',
+        'gggggdggggggggdgvvvvvvvvvvvvvvvv',
+        'ddddddddddddgddgvvvvvvvvvvvvvvvv',
+        'gggggggggggdgdggvvvvvvvvvvvvvvvv',
+        'gddddgddddddgddgvvvvvvvvvvvvvvvv',
+        'gdgdddddggddgddgvvvvvvvvvvvvvvvv',
+        'gdgdgggdggdgggdgvvvvvvvvvvvvvvvv',
+        'gdggggggggdgdddgvvvvvvvvvvvvvvvv',
+        'gdgddddddgdgdgggvvvvvvvvvvvvvvvv',
+        'gdgdgggddgdgddddvvvvvvvvvvvvvvvv',
+        'gdgdgggggggggdggvvvvvvvvvvvvvvvv',
+        'gddddddddddddddgvvvvvvvvvvvvvvvv',
+        'ggggggggggggggggvvvvvvvvvvvvvvvv',
         ],
         1, 2,
         16, 16,);

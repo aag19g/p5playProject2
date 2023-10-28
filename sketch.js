@@ -1,14 +1,13 @@
 let miniMe;
 let sheetImg;
-let grass, dirt;
+let grass, dirt, green, flowers;
 
 function preload(){
     sheetImg = loadImage("Textures-16.png");
-
 }
 
 function setup() {
-    new Canvas(800, 800, 'pixelated x4');
+    new Canvas(800, 800, 'pixelated x3');
     allSprites.pixelPerfect = true;
     allSprites.rotationLock = true;
 
@@ -17,7 +16,6 @@ function setup() {
     grass.spriteSheet = sheetImg;
     grass.addAni({w:16, h:16, row:4, col:3})
     grass.tile = 'g';
-    grass.size(10, 10)
 
     dirt = new Group();
     dirt.collider = 's';
@@ -31,20 +29,26 @@ function setup() {
     green.addAni({w:16, h:16, row:15, col:3})
     green.tile = 'v';
 
+    flowers = new Group();
+    flowers.collider = 's';
+    flowers.spriteSheet = sheetImg;
+    flowers.addAni({w:16, h:16, row:15, col:3})
+    flowers.tile = 'f';
+
     new Tiles([
         'ggggggggggggggggvvvvvvvvvvvvvvvv',
-        'gddddddgdddddddgvvvvvvvvvvvvvvvv',
-        'gggggdggggggggdgvvvvvvvvvvvvvvvv',
-        'ddddddddddddgddgvvvvvvvvvvvvvvvv',
-        'gggggggggggdgdggvvvvvvvvvvvvvvvv',
-        'gddddgddddddgddgvvvvvvvvvvvvvvvv',
-        'gdgdddddggddgddgvvvvvvvvvvvvvvvv',
-        'gdgdgggdggdgggdgvvvvvvvvvvvvvvvv',
-        'gdggggggggdgdddgvvvvvvvvvvvvvvvv',
-        'gdgddddddgdgdgggvvvvvvvvvvvvvvvv',
-        'gdgdgggddgdgddddvvvvvvvvvvvvvvvv',
-        'gdgdgggggggggdggvvvvvvvvvvvvvvvv',
-        'gddddddddddddddgvvvvvvvvvvvvvvvv',
+        'dddddddgdddddddgvggggggggggggggv',
+        'gggggdggggggggdgvgvvvvvvvvvvvvgv',
+        'gdddddddddddgddgvgvggggggggggvgv',
+        'gggggggggggdgdggvgvgvvvvvvvvgvgv',
+        'gddddgddddddgddgvgvgvggggggvgvgv',
+        'gdgdddddggddgddgvgvgvgvvvvgvgvgv',
+        'gdgdgggdggdgggdgvgvgvgvvvvgvgvgv',
+        'gdggggggggdgdddgvgvgvgvvvvgvgvgv',
+        'gdgddddddgdgdgggggvgvgvvvvvvgvgv',
+        'gdgdgggddgdgddddvvvgvggggggggvgv',
+        'gdgdgggggggggdggvvvgvvvvvvvvvvgv',
+        'gddddddddddddddgvvvggggggggggggv',
         'ggggggggggggggggvvvvvvvvvvvvvvvv',
         ],
         1, 2,
@@ -65,24 +69,24 @@ function setup() {
 
 function draw() { 
     clear();
-    
-    if (kb.pressed('left')) {
+
+    miniMe.speed = 1;
+	
+	if (kb.pressing('up')) {
+        miniMe.changeAni('back');
+		miniMe.direction = -90;
+	} else if (kb.pressing('down')) {
+        miniMe.changeAni('front');
+		miniMe.direction = 90;
+	} else if (kb.pressing('left')) {
         miniMe.changeAni('left');
         miniMe.mirror.x = false;
-        miniMe.vel.x = -.5;
-        miniMe.vel.y = 0;
-    } else if (kb.pressed('up')){
-        miniMe.changeAni('back');
-        miniMe.vel.y = -.5;
-        miniMe.vel.x = 0;
-    } else if (kb.pressed('down')){
-        miniMe.changeAni('front');
-        miniMe.vel.y = .5;
-        miniMe.vel.x = 0;
-    } else if (kb.pressed('right')){
+		miniMe.direction = 180;
+	} else if (kb.pressing('right')) {
         miniMe.changeAni('left');
         miniMe.mirror.x = true;
-        miniMe.vel.y = 0;
-        miniMe.vel.x = .5;
-    }
+		miniMe.direction = 0;
+	} else {
+	  miniMe.speed = 0;
+	}
 }

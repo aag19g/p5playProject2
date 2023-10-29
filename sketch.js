@@ -1,6 +1,7 @@
 let miniMe;
 let sheetImg;
 let grass, dirt, green, flowers;
+let icons;
 
 function preload(){
     sheetImg = loadImage("Textures-16.png");
@@ -65,6 +66,12 @@ function setup() {
         });
         miniMe.changeAni('front');
         miniMe.collider = "k"
+
+        icons = new Sprite(20, 48, 12, 12);
+        icons.spriteSheet = 'icons.png';
+        icons.addAni({w:32, h:32, row:2, col:9})
+        icons.collider = 'n'
+    
 }
 
 function draw() { 
@@ -88,5 +95,9 @@ function draw() {
 		miniMe.direction = 0;
 	} else {
 	  miniMe.speed = 0;
-	}
+	} 
+
+	if (miniMe.overlap(icons)){
+        icons.remove();
+}
 }

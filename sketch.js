@@ -86,6 +86,7 @@ function setup() {
 function draw() { 
     clear();
 
+
     miniMe.speed = 1;
 	
 	if (kb.pressing('up')) {
@@ -105,17 +106,8 @@ function draw() {
 	} else {
 	  miniMe.speed = 0;
 	} 
-
-	if (miniMe.overlap(mail)){
+    
+    if (miniMe.overlap(mail)){
         mail.remove();
     }
-
-    // if (miniMe.overlap(flam)){
-    //     mail.remove();
-    // }
-
-    // if (miniMe.overlap(dirt)){
-    //     dirt.changeAnimation(green)
-    //     dirt.collider = 'n'
-	// }
 }

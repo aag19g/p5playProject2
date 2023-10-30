@@ -1,7 +1,7 @@
 let miniMe;
 let sheetImg;
-let grass, dirt, green, flowers;
-let icons;
+let wall, dirt, green, flowers;
+let mail, flam, key;
 
 function preload(){
     sheetImg = loadImage("Textures-16.png");
@@ -12,11 +12,11 @@ function setup() {
     allSprites.pixelPerfect = true;
     allSprites.rotationLock = true;
 
-    grass = new Group();
-    grass.collider = 's';
-    grass.spriteSheet = sheetImg;
-    grass.addAni({w:16, h:16, row:4, col:3})
-    grass.tile = 'g';
+    wall = new Group();
+    wall.collider = 's';
+    wall.spriteSheet = sheetImg;
+    wall.addAni({w:16, h:16, row:4, col:3})
+    wall.tile = 'g';
 
     dirt = new Group();
     dirt.collider = 's';
@@ -67,11 +67,20 @@ function setup() {
         miniMe.changeAni('front');
         miniMe.collider = "k"
 
-        icons = new Sprite(20, 48, 12, 12);
-        icons.spriteSheet = 'icons.png';
-        icons.addAni({w:32, h:32, row:2, col:9})
-        icons.collider = 'n'
-    
+        mail = new Sprite(20, 48);
+        mail.spriteSheet = 'icons.png';
+        mail.addAni({w:32, h:32, row:6, col:8})
+        mail.collider = 'n'
+
+        flam = new Sprite(130, 20); // x, y
+        flam.spriteSheet = 'icons.png';
+        flam.addAni({w:32, h:32, row:28, col:7})
+        flam.collider = 'n'
+
+        key = new Sprite(220, 200); // x, y
+        key.spriteSheet = 'icons.png';
+        key.addAni({w:32, h:32, row:25, col:12})
+        key.collider = 'n'
 }
 
 function draw() { 
@@ -97,7 +106,16 @@ function draw() {
 	  miniMe.speed = 0;
 	} 
 
-	if (miniMe.overlap(icons)){
-        icons.remove();
-}
+	if (miniMe.overlap(mail)){
+        mail.remove();
+    }
+
+    // if (miniMe.overlap(flam)){
+    //     mail.remove();
+    // }
+
+    // if (miniMe.overlap(dirt)){
+    //     dirt.changeAnimation(green)
+    //     dirt.collider = 'n'
+	// }
 }

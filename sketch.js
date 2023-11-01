@@ -5,12 +5,12 @@ function setup(){
     background('black');
     textSize(70)
     fill('palegreen');
-    text('WELCOME', 120, 250)
+    textFont('Courier New')
+    text('WELCOME', 160, 250)
 
     button = createButton('PLAY');
     button.position(380, 340);
     button.mouseClicked(startG);
-
 }
 
 function startG(){

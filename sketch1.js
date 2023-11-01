@@ -1,7 +1,6 @@
 let miniMe;
 let sheetImg;
 let wall, dirt, green, flowers;
-let mail, flam, key;
 
 function preload(){
     sheetImg = loadImage("Textures-16.png");
@@ -37,38 +36,23 @@ function setup() {
     flowers.tile = 'f';
 
     new Tiles([
-        'gggggggggggggggg',
-        'dddddddgdddddddg',
-        'gggggdggggggggdg',
-        'gdddddddddddgddg',
-        'gggggggggggdgdgg',
-        'gddddgddddddgddg',
-        'gdgdddddggddgddg',
-        'gdgdgggdggdgggdg',
-        'gdggggggggdgdddg',
-        'gdgddddddgdgdggg',
-        'gdgdgggddgdgdddd',
-        'gdgdgggggggggdgg',
-        'gddddddddddddddg',
-        'gggggggggggggggg',
+        'vvvvvvvvvvvvvvvv',
+        'vggggggggggggggv',
+        'vgvvvvvvvvvvvvgv',
+        'vgvggggggggggvgv',
+        'vgvgvvvvvvvvgvgv',
+        'vgvgvggggggvgvgv',
+        'vgvgvgvvvvgvgvgv',
+        'vgvgvgvvvvgvgvgv',
+        'vgvgvgvvvvgvgvgv',
+        'ggvgvgvvvvvvgvgv',
+        'vvvgvggggggggvgv',
+        'vvvgvvvvvvvvvvgv',
+        'vvvggggggggggggv',
+        'vvvvvvvvvvvvvvvv',
         ],
         1, 2,
         16, 16,);
-
-        mail = new Sprite(20, 48);
-        mail.spriteSheet = 'icons.png';
-        mail.addAni({w:32, h:32, row:6, col:8})
-        mail.collider = 'n'
-
-        flam = new Sprite(130, 20); // x, y
-        flam.spriteSheet = 'icons.png';
-        flam.addAni({w:32, h:32, row:28, col:7})
-        flam.collider = 'n'
-
-        key = new Sprite(220, 200); // x, y
-        key.spriteSheet = 'icons.png';
-        key.addAni({w:32, h:32, row:25, col:12})
-        key.collider = 'n'
 
         miniMe = new Sprite(15, 14, 15, 14);
         miniMe.spriteSheet = 'miniMe.png';
@@ -81,15 +65,8 @@ function setup() {
         });
         miniMe.changeAni('front');
         miniMe.collider = "k"
-       
-        button = createButton('level2');
-        button.position(690, 480);
-        button.mouseClicked(startG);
 }
 
-function startG(){
-    location.assign("index1.html")
-}
 
 function draw() { 
     clear();
@@ -114,8 +91,4 @@ function draw() {
 	  miniMe.speed = 0;
 	} 
     
-    // if (miniMe.overlap(mail)){
-    //     mail.remove();
-    // }
-
 }

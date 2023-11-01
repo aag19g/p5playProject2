@@ -1,0 +1,14 @@
+canvas {
+    padding: 0;
+    margin: auto;
+    display: block;
+    width: 800px;
+}
+
+button{
+    background-color: black;
+    border: transparent;
+    height: 50px;
+    font-size: 30px;
+    color:white;
+}

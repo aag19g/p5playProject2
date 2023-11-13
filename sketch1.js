@@ -17,23 +17,11 @@ function setup() {
     wall.addAni({w:16, h:16, row:4, col:3})
     wall.tile = 'g';
 
-    dirt = new Group();
-    dirt.collider = 's';
-    dirt.spriteSheet = sheetImg;
-    dirt.addAni({w:16, h:16, row:6, col:0})
-    dirt.tile = 'd';
-
     green = new Group();
     green.collider = 's';
     green.spriteSheet = sheetImg;
     green.addAni({w:16, h:16, row:15, col:3})
     green.tile = 'v';
-
-    flowers = new Group();
-    flowers.collider = 's';
-    flowers.spriteSheet = sheetImg;
-    flowers.addAni({w:16, h:16, row:15, col:3})
-    flowers.tile = 'f';
 
     new Tiles([
         'vvvvvvvvvvvvvvvv',

@@ -1,16 +1,23 @@
-let miniMe;
-let sheetImg;
-let wall, dirt, green, flowers;
-let mail, flam, key;
+let miniMe, targets;
+let sheetImg, sheetImg2;
+let wall, dirt, green;
+let targetEmojis = ['mail', 'flam', 'key'];
+
+let lives = 5;
+let points = 0;
+let targetPointValue = 1;
 
 function preload(){
     sheetImg = loadImage("Textures-16.png");
+    sheetImg2 = loadImage("icons.png")
 }
 
 function setup() {
     new Canvas(800, 800, 'pixelated x3');
+    rectMode(CENTER);
     allSprites.pixelPerfect = true;
     allSprites.rotationLock = true;
+    textSize(48);
 
     wall = new Group();
     wall.collider = 's';
@@ -23,18 +30,6 @@ function setup() {
     dirt.spriteSheet = sheetImg;
     dirt.addAni({w:16, h:16, row:6, col:0})
     dirt.tile = 'd';
-
-    green = new Group();
-    green.collider = 's';
-    green.spriteSheet = sheetImg;
-    green.addAni({w:16, h:16, row:15, col:3})
-    green.tile = 'v';
-
-    flowers = new Group();
-    flowers.collider = 's';
-    flowers.spriteSheet = sheetImg;
-    flowers.addAni({w:16, h:16, row:15, col:3})
-    flowers.tile = 'f';
 
     new Tiles([
         'gggggggggggggggg',
@@ -55,20 +50,36 @@ function setup() {
         1, 2,
         16, 16,);
 
+        targets = new Group();
+        for (let i = 0; i < 10; i++) {
+            let target = new targets.Sprite(
+                random(width),
+                random(200,height),
+                48, 48, 'k'
+            );
+            let randomEmoji = targetEmojis[floor(random(targetEmojis.length))];
+            target.emoji = randomEmoji;
+            target.draw = () => {
+                text(randomEmoji,0,0);
+            }  
+
         mail = new Sprite(20, 48);
-        mail.spriteSheet = 'icons.png';
+        mail.collider = 'k'
+        mail.spriteSheet = sheetImg2;
         mail.addAni({w:32, h:32, row:6, col:8})
-        mail.collider = 'n'
+        mail.ani.scale = 0.9
 
         flam = new Sprite(130, 20); // x, y
-        flam.spriteSheet = 'icons.png';
+        flam.collider = 'k'
+        flam.spriteSheet = sheetImg2;
         flam.addAni({w:32, h:32, row:28, col:7})
-        flam.collider = 'n'
+        flam.ani.scale = 0.5
 
         key = new Sprite(220, 200); // x, y
-        key.spriteSheet = 'icons.png';
+        key.collider = 'k'
+        key.spriteSheet = sheetImg2;
         key.addAni({w:32, h:32, row:25, col:12})
-        key.collider = 'n'
+        key.ani.scale = 0.5
 
         miniMe = new Sprite(15, 14, 15, 14);
         miniMe.spriteSheet = 'miniMe.png';
@@ -81,10 +92,19 @@ function setup() {
         });
         miniMe.changeAni('front');
         miniMe.collider = "k"
+
+        miniMe.overlaps(targets, collect);
        
         button = createButton('level2');
         button.position(690, 480);
         button.mouseClicked(startG);
+}
+}
+
+function collect(p,t) {
+    t.remove();
+    points += targetPointValue;
+    if (!muted) tootSound.play();
 }
 
 function startG(){
@@ -112,10 +132,14 @@ function draw() {
 		miniMe.direction = 0;
 	} else {
 	  miniMe.speed = 0;
-	} 
-    
-    // if (miniMe.overlap(mail)){
-    //     mail.remove();
-    // }
+	}
+
+
+function numberToEmoji(number) {
+    const emojiArray = ['0','1️','2️','3️','4️','5️','6️','7️','8️','9️'];
+    const numberString = number.toString();
+    const emojiString = numberString.split('').map(digit => emojiArray[parseInt(digit,10)]).join('');
+    return emojiString;
+}
 
 }

@@ -6,12 +6,13 @@ function setup(){
     textSize(70)
     fill('palegreen');
     textFont('Courier New')
-    text('WELCOME', 160, 250)
+    text('Welcome', 160, 250)
 
     button = createButton('PLAY');
-    button.position(380, 340);
+    button.position(280, 350);
     button.mouseClicked(startG);
 }
 
 function startG(){
-location.assign("index0.html")}
+location.assign("index0.html")
+}

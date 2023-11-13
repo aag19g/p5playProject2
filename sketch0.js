@@ -1,7 +1,7 @@
-let miniMe, targets;
+let miniMe;
 let sheetImg, sheetImg2;
-let wall, dirt, green;
-let targetEmojis = ['mail', 'flam', 'key'];
+let walls, dirt, green;
+let key
 
 let lives = 5;
 let points = 0;
@@ -13,22 +13,23 @@ function preload(){
 }
 
 function setup() {
-    new Canvas(800, 800, 'pixelated x3');
-    rectMode(CENTER);
+    new Canvas(300, 450, 'pixelated x3');
+    world.gravity.y = 10;
     allSprites.pixelPerfect = true;
     allSprites.rotationLock = true;
+    allSprites.tileSize = 16
     textSize(48);
 
-    wall = new Group();
-    wall.collider = 's';
-    wall.spriteSheet = sheetImg;
-    wall.addAni({w:16, h:16, row:4, col:3})
-    wall.tile = 'g';
+    walls = new Group();
+    walls.collider = 'n';
+    walls.spriteSheet = sheetImg;
+    walls.addAni({w:1, h:1, row:4, col:3})
+    walls.tile = 'g';
 
     dirt = new Group();
     dirt.collider = 's';
     dirt.spriteSheet = sheetImg;
-    dirt.addAni({w:16, h:16, row:6, col:0})
+    dirt.addAni({w:1, h:1, row:6, col:0})
     dirt.tile = 'd';
 
     new Tiles([
@@ -48,32 +49,7 @@ function setup() {
         'gggggggggggggggg',
         ],
         1, 2,
-        16, 16,);
-
-        targets = new Group();
-        for (let i = 0; i < 10; i++) {
-            let target = new targets.Sprite(
-                random(width),
-                random(200,height),
-                48, 48, 'k'
-            );
-            let randomEmoji = targetEmojis[floor(random(targetEmojis.length))];
-            target.emoji = randomEmoji;
-            target.draw = () => {
-                text(randomEmoji,0,0);
-            }  
-
-        mail = new Sprite(20, 48);
-        mail.collider = 'k'
-        mail.spriteSheet = sheetImg2;
-        mail.addAni({w:32, h:32, row:6, col:8})
-        mail.ani.scale = 0.9
-
-        flam = new Sprite(130, 20); // x, y
-        flam.collider = 'k'
-        flam.spriteSheet = sheetImg2;
-        flam.addAni({w:32, h:32, row:28, col:7})
-        flam.ani.scale = 0.5
+        1, 1,);
 
         key = new Sprite(220, 200); // x, y
         key.collider = 'k'
@@ -92,13 +68,10 @@ function setup() {
         });
         miniMe.changeAni('front');
         miniMe.collider = "k"
-
-        miniMe.overlaps(targets, collect);
        
         button = createButton('level2');
         button.position(690, 480);
         button.mouseClicked(startG);
-}
 }
 
 function collect(p,t) {

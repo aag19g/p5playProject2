@@ -10,17 +10,18 @@ function setup() {
     new Canvas(800, 800, 'pixelated x3');
     allSprites.pixelPerfect = true;
     allSprites.rotationLock = true;
+    allSprites.tileSize = 16
 
     wall = new Group();
     wall.collider = 's';
     wall.spriteSheet = sheetImg;
-    wall.addAni({w:16, h:16, row:4, col:3})
+    wall.addAni({w:1, h:1, row:4, col:3})
     wall.tile = 'g';
 
     green = new Group();
     green.collider = 's';
     green.spriteSheet = sheetImg;
-    green.addAni({w:16, h:16, row:15, col:3})
+    green.addAni({w:1, h:1, row:15, col:3})
     green.tile = 'v';
 
     new Tiles([
@@ -40,7 +41,7 @@ function setup() {
         'vvvvvvvvvvvvvvvv',
         ],
         1, 2,
-        16, 16,);
+        1, 1,);
 
         miniMe = new Sprite(15, 14, 15, 14);
         miniMe.spriteSheet = 'miniMe.png';

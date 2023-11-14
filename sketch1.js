@@ -43,7 +43,7 @@ function setup() {
         1, 2,
         1, 1,);
 
-        miniMe = new Sprite(15, 14, 15, 14);
+        miniMe = new Sprite(1, 12, 15, 14);
         miniMe.spriteSheet = 'miniMe.png';
         miniMe.anis.frameDelay = 7
         miniMe.addAnis({

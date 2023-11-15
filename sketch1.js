@@ -23,7 +23,7 @@ function preload(){
 }
 
 function setup() {
-    new Canvas(800, 800, 'pixelated x3');
+    new Canvas(300, 450, 'pixelated x2.5');
     allSprites.pixelPerfect = true;
     allSprites.rotationLock = true;
     allSprites.tileSize = 16
@@ -40,19 +40,19 @@ function setup() {
     green.addAni({w:1, h:1, row:15, col:3})
     green.tile = 'v';
 
-new Tiles(map, 2, 2, 1, 1,);
+    new Tiles(map, 2, 2, 1, 1,);
 
-        miniMe = new Sprite(1, 12, 15, 14);
-        miniMe.spriteSheet = 'assets/miniMe.png';
-        miniMe.anis.frameDelay = 7
-        miniMe.addAnis({
+    miniMe = new Sprite(2, 12, 15, 14);
+    miniMe.spriteSheet = 'assets/miniMe.png';
+    miniMe.anis.frameDelay = 7
+    miniMe.addAnis({
             front: {row: 0, frames: 4},
             back: {row: 1, frames: 4},
             right: {row: 2, frames: 4},
             left: {row: 3, frames: 4},
         });
-        miniMe.changeAni('front');
-        miniMe.collider = "k"
+    miniMe.changeAni('front');
+    miniMe.collider = "k"
 }
 
 

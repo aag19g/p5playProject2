@@ -67,14 +67,14 @@ new Tiles(map, 2, 2, 1, 1);
     //         flowers.add(c)
     // }
        
-    // button = createButton('level2');
-    // button.position(690, 480);
-    // button.mouseClicked(startG);
+    button = createButton('level2');
+    button.position(690, 480);
+    button.mouseClicked(startG);
 }
 
-// function startG(){
-//     location.assign("index1.html")
-// }
+function startG(){
+    location.assign("index1.html")
+}
 
 function draw() { 
     clear();

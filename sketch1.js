@@ -1,9 +1,25 @@
 let miniMe;
 let sheetImg;
 let wall, dirt, green, flowers;
+let map = [
+    'vvvvvvvvvvvvvvvv',
+    'vggggggggggggggv',
+    'vgvvvvvvvvvvvvgv',
+    'vgvggggggggggvgv',
+    'vgvgvvvvvvvvgvgv',
+    'vgvgvggggggvgvgv',
+    'vgvgvgvvvvgvgvgv',
+    'vgvgvgvvvvgvgvgv',
+    'vgvgvgvvvvgvgvgv',
+    'ggvgvgvvvvvvgvgv',
+    'vvvgvggggggggvgv',
+    'vvvgvvvvvvvvvvgv',
+    'vvvggggggggggggv',
+    'vvvvvvvvvvvvvvvv',
+    ];
 
 function preload(){
-    sheetImg = loadImage("Textures-16.png");
+    sheetImg = loadImage("assets/Textures-16.png");
 }
 
 function setup() {
@@ -13,7 +29,7 @@ function setup() {
     allSprites.tileSize = 16
 
     wall = new Group();
-    wall.collider = 's';
+    wall.collider = 'n';
     wall.spriteSheet = sheetImg;
     wall.addAni({w:1, h:1, row:4, col:3})
     wall.tile = 'g';
@@ -24,27 +40,10 @@ function setup() {
     green.addAni({w:1, h:1, row:15, col:3})
     green.tile = 'v';
 
-    new Tiles([
-        'vvvvvvvvvvvvvvvv',
-        'vggggggggggggggv',
-        'vgvvvvvvvvvvvvgv',
-        'vgvggggggggggvgv',
-        'vgvgvvvvvvvvgvgv',
-        'vgvgvggggggvgvgv',
-        'vgvgvgvvvvgvgvgv',
-        'vgvgvgvvvvgvgvgv',
-        'vgvgvgvvvvgvgvgv',
-        'ggvgvgvvvvvvgvgv',
-        'vvvgvggggggggvgv',
-        'vvvgvvvvvvvvvvgv',
-        'vvvggggggggggggv',
-        'vvvvvvvvvvvvvvvv',
-        ],
-        1, 2,
-        1, 1,);
+new Tiles(map, 2, 2, 1, 1,);
 
         miniMe = new Sprite(1, 12, 15, 14);
-        miniMe.spriteSheet = 'miniMe.png';
+        miniMe.spriteSheet = 'assets/miniMe.png';
         miniMe.anis.frameDelay = 7
         miniMe.addAnis({
             front: {row: 0, frames: 4},
@@ -60,24 +59,32 @@ function setup() {
 function draw() { 
     clear();
 
-    miniMe.speed = 1;
-	
-	if (kb.pressing('up')) {
+    if (kb.pressed('up') && isOpen(miniMe.x, miniMe.y-1)) {
         miniMe.changeAni('back');
-		miniMe.direction = -90;
-	} else if (kb.pressing('down')) {
+        miniMe.y--;
+	} else if (kb.pressed('down') && isOpen(miniMe.x, miniMe.y+1)) {
         miniMe.changeAni('front');
-		miniMe.direction = 90;
-	} else if (kb.pressing('left')) {
+        miniMe.y++;
+	} else if (kb.pressed('left') && isOpen(miniMe.x-1, miniMe.y)) {
         miniMe.changeAni('left');
-        miniMe.mirror.x = false;
-		miniMe.direction = 180;
-	} else if (kb.pressing('right')) {
-        miniMe.changeAni('left');
-        miniMe.mirror.x = true;
-		miniMe.direction = 0;
-	} else {
-	  miniMe.speed = 0;
-	} 
-    
+        // miniMe.mirror.x = false;
+        miniMe.x--;
+	} else if (kb.pressed('right') && isOpen(miniMe.x+1, miniMe.y)) {
+        miniMe.changeAni('right');
+        // miniMe.mirror.x = true;
+        miniMe.x++;
+}
+
+
+function isOpen(x,y){
+    let i = floor(x);
+    let j = floor(y);
+    let tile = map[j][i];
+    if (tile == 'g'){
+        return true;
+    } else{
+        console.log('blocked');
+        return false;
+    }
+}
 }

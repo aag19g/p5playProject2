@@ -1,14 +1,13 @@
-canvas {
-    padding: 0;
-    margin: auto;
-    display: block;
-    width: 800px;
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-button{
+/* button{
     background-color: black;
     border: transparent;
-    height: 50px;
     font-size: 30px;
     color:white;
-}
+} */

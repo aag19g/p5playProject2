@@ -43,9 +43,9 @@ function setup() {
     dirt.addAni({w:1, h:1, row:6, col:0})
     dirt.tile = 'd';
 
-new Tiles(map, 2, 2, 1, 1);
+new Tiles(map, 0, 0, 1, 1);
 
-    miniMe = new Sprite(2, 3, 15, 15);
+    miniMe = new Sprite(2, 3, 16, 16);
     miniMe.spriteSheet = 'assets/miniMe.png';
     miniMe.anis.frameDelay = 19
     miniMe.addAnis({
@@ -86,11 +86,11 @@ function draw() {
         miniMe.changeAni('front');
         miniMe.y++;
 	} else if (kb.pressed('left') && isOpen(miniMe.x-1, miniMe.y)) {
-        miniMe.changeAni('right');
+        miniMe.changeAni('left');
         miniMe.mirror.x = false;
         miniMe.x--;
 	} else if (kb.pressed('right') && isOpen(miniMe.x+1, miniMe.y)) {
-        miniMe.changeAni('right');
+        miniMe.changeAni('left');
         miniMe.mirror.x = true;
         miniMe.x++;
     }

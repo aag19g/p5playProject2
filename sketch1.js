@@ -40,9 +40,9 @@ function setup() {
     green.addAni({w:1, h:1, row:15, col:3})
     green.tile = 'v';
 
-    new Tiles(map, 2, 2, 1, 1,);
+    new Tiles(map, 0, 0, 1, 1,);
 
-    miniMe = new Sprite(2, 12, 15, 14);
+    miniMe = new Sprite(2, 12, 16, 16);
     miniMe.spriteSheet = 'assets/miniMe.png';
     miniMe.anis.frameDelay = 7
     miniMe.addAnis({
@@ -67,11 +67,11 @@ function draw() {
         miniMe.y++;
 	} else if (kb.pressed('left') && isOpen(miniMe.x-1, miniMe.y)) {
         miniMe.changeAni('left');
-        // miniMe.mirror.x = false;
+        miniMe.mirror.x = false;
         miniMe.x--;
 	} else if (kb.pressed('right') && isOpen(miniMe.x+1, miniMe.y)) {
-        miniMe.changeAni('right');
-        // miniMe.mirror.x = true;
+        miniMe.changeAni('left');
+        miniMe.mirror.x = true;
         miniMe.x++;
 }
 
@@ -80,7 +80,7 @@ function isOpen(x,y){
     let i = floor(x);
     let j = floor(y);
     let tile = map[j][i];
-    if (tile == 'g'){
+    if (tile == 'v'){
         return true;
     } else{
         console.log('blocked');

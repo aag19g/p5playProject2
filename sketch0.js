@@ -1,5 +1,5 @@
-let miniMe;
-let sheetImg, sheetImg4;
+let miniMe, coin;
+let sheetImg, sheetImg2, sheetImg4;
 let walls, dirt, green;
 let map = [
     'gggggggggggggggg',
@@ -20,6 +20,7 @@ let map = [
 
 function preload(){
     sheetImg = loadImage("assets/Textures-16.png");
+    sheetImg2 = loadImage("assets/icon.png")
 }
 
 function setup() {
@@ -31,17 +32,24 @@ function setup() {
 
     walls = new Group();
     walls.spriteSheet = sheetImg;
-    walls.addAni({w:1, h:1, row:4, col:3})
+    walls.addAni({w:1, h:1, row:4, col:3});
     walls.collider = 'n';
     walls.tile = 'g';
 
     dirt = new Group();
     dirt.collider = 'n';
     dirt.spriteSheet = sheetImg;
-    dirt.addAni({w:1, h:1, row:6, col:0})
+    dirt.addAni({w:1, h:1, row:6, col:0});
     dirt.tile = 'd';
 
 new Tiles(map, 0, 0, 1, 1);
+
+    coin = new Sprite(10, 10);
+    coin.spriteSheet = sheetImg2;
+    coin.addAni({w:2, h:1.3, row:0, col:0});
+    coin.collider = 'k';
+    coin.ani.scale = 0.5
+
 
     miniMe = new Sprite(2, 3, 16, 16);
     miniMe.spriteSheet = 'assets/miniMe.png';
@@ -82,6 +90,7 @@ function draw() {
         miniMe.mirror.x = true;
         miniMe.x++;
     }
+
 }
 
 

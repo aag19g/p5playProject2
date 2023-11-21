@@ -1,6 +1,4 @@
 let miniMe;
-// let flowers;
-// let score = 0
 let sheetImg, sheetImg4;
 let walls, dirt, green;
 let map = [
@@ -56,16 +54,6 @@ new Tiles(map, 0, 0, 1, 1);
     });
     miniMe.changeAni('front');
     miniMe.collider = "k"
-
-    // flowers = new Group();
-    // for (let i = 0; i < 10; i++){
-    //     let c = createSprite(
-    //         random(100, width-100),
-    //         random(100, height-100),
-    //         10, 10);
-    //         c.shapeColor = color(255, 255, 0);
-    //         flowers.add(c)
-    // }
        
     button = createButton('level2');
     button.position(690, 480);
@@ -94,24 +82,7 @@ function draw() {
         miniMe.mirror.x = true;
         miniMe.x++;
     }
-
-    // miniMe.overlap(flowers, collect);
-    // fill(255)
-    // noStroke();
-    // textSize(72);
-    // textAlign(CENTER, CENTER);
-    // if  (flowers.length > 0) {
-    //     text(score, width/2, height/2);
-    // }
-    // else {
-    //     text("you win!", width/2, height/2);
-    // }
 }
-
-// function collect(player, flowers) {
-//  flowers.remove();
-//     score += 1;
-//   }
 
 
 function isOpen(x,y){

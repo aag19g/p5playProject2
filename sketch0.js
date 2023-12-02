@@ -18,6 +18,23 @@ let map = [
     'gggggggggggggggg'
     ];
 
+let mapa = [
+    '                ',
+    ' c              ',
+    '                ',
+    '                ',
+    '                ',
+    '                ',
+    '                ',
+    '       c        ',
+    '                ',
+    '                ',
+    '                ',
+    '                ',
+    '        c       ',
+    '                '
+];
+
 function preload(){
     sheetImg = loadImage("assets/Textures-16.png");
     sheetImg2 = loadImage("assets/icon.png")
@@ -47,9 +64,11 @@ new Tiles(map, 0, 0, 1, 1);
     coin = new Sprite(10, 10);
     coin.spriteSheet = sheetImg2;
     coin.addAni({w:2, h:1.3, row:0, col:0});
-    coin.collider = 'k';
+    coin.collider = 'n';
     coin.ani.scale = 0.5
+    coin.tile = 'c'
 
+new Tiles(mapa, 0, 0, 1, 1);
 
     miniMe = new Sprite(2, 3, 16, 16);
     miniMe.spriteSheet = 'assets/miniMe.png';
@@ -61,11 +80,17 @@ new Tiles(map, 0, 0, 1, 1);
             left: {row: 3, frames: 4}
     });
     miniMe.changeAni('front');
-    miniMe.collider = "k"
+    miniMe.collider = "rectangle"
+
+    miniMe.overlap(coin, collect);
        
     button = createButton('level2');
     button.position(690, 480);
     button.mouseClicked(startG);
+}
+
+function collect(miniMe, coin){
+    coin.remove();
 }
 
 function startG(){
@@ -74,6 +99,13 @@ function startG(){
 
 function draw() { 
     clear();
+
+    spriteCount = coin.length;
+
+    fill(255);
+    textSize(30);
+    textAlign(CENTER, CENTER);
+    text("Sprite count = " + spriteCount, 200, 30);
 
 	if (kb.pressed('up') && isOpen(miniMe.x, miniMe.y-1)) {
         miniMe.changeAni('back');
